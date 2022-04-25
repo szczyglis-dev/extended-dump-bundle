@@ -129,12 +129,12 @@ class Generator
                 && $this->config['display']['sections'][$key]['enabled'] === false) {
                     continue;
             }
-
-            if (!isset($this->config['display']['sections']['system']['collapsed'])) {
-                $this->config['display']['sections']['system']['collapsed'] = true;
-            }
-
+            
             $items[$key][] = $item;
+        }
+
+        if (!isset($this->config['display']['sections']['system']['collapsed'])) {
+            $this->config['display']['sections']['system']['collapsed'] = true;
         }
 
         $hash = substr(md5(random_bytes(32)), 0, 5);
