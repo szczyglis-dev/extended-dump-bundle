@@ -99,7 +99,7 @@ class Generator
         }
 
         if (isset($this->config['display']['enabled']) && $this->config['display']['enabled'] === false) {
-            return;
+            return false;
         }
 
         $this->systemDump->dump();
