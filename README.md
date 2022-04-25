@@ -10,10 +10,6 @@ PHP: **7.2.5+**, current release: **1.0.0** build 2022-04-25
 ```
 composer require szczyglis/extended-dump-bundle
 ```
-## How it works:
-
-![main](https://user-images.githubusercontent.com/61396542/165001832-976a8387-ce05-4ef2-935a-f197515ef215.png)
-
 ## Features:
 
 - a new, configurable window containing grouped debugged variables
@@ -21,6 +17,8 @@ composer require szczyglis/extended-dump-bundle
 - all debugged variables in one place
 - displaying many useful information, such as debug of the current user, the RequestStack object, POST array, cookies and server variables
 - the ability to expand with symfony events system.
+- 
+## How it works:
 
 **Appearance after installation:**
 
@@ -33,6 +31,8 @@ The debug window is divided into 3 sections:
 - **app** - the section contains all variables collected with the use of the `xdump` function,
 - **event** - the event section displays the debug added using your own Event Subscriber,
 - **system** - displays handy, most useful system information.
+
+![main](https://user-images.githubusercontent.com/61396542/165001832-976a8387-ce05-4ef2-935a-f197515ef215.png)
 
 
 ## The new `xdump` global function
