@@ -1,4 +1,4 @@
-PHP: **7.2.5+**, current release: **1.0.5** build 2022-04-25
+PHP: **7.2.5+**, current release: **1.0.6** build 2022-04-25
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -103,9 +103,9 @@ To use in a template, just use the `xdump` function inside twig template:
 
 *The "label" parameter is optional.*
 
-## Extending eXtended Dump with EventSubscriber / EventListener
+## Extending eXtended Dump with EventSubscriber or EventListener
 
-You can extend the debugger window with your own elements that will be placed there permanently. Thanks to this, you can, for example, have a quick preview of the status of selected objects in the application. To do this, create a new **EventSubscriber** or **EventSubscriber** and handle the `Szczyglis\ExtendedDumpBundle\Event\RenderEvent`:
+You can extend the debugger window with your own elements that will be placed there permanently. Thanks to this, you can, for example, have a quick preview of the status of selected objects in the application. To do this, create a new **EventSubscriber** or **EventListener** and handle the `Szczyglis\ExtendedDumpBundle\Event\RenderEvent`:
 
 *Example of use:*
 
@@ -198,7 +198,7 @@ ___
 ___
 
 # Changelog
-**- 1.0.5** - Published first release. (2022-04-25)
+**- 1.0.6** - Published first release. (2022-04-25)
 
 # Credits
  
