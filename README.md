@@ -1,4 +1,4 @@
-PHP: **7.2.5+**, current release: **1.0.3** build 2022-04-25
+PHP: **7.2.5+**, current release: **1.0.4** build 2022-04-25
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -198,7 +198,7 @@ ___
 ___
 
 # Changelog
-**- 1.0.3** - Published first release. (2022-04-25)
+**- 1.0.4** - Published first release. (2022-04-25)
 
 # Credits
  
@@ -214,7 +214,9 @@ or by PayPal:
 
 MIT License | 2022 Marcin 'szczyglis' Szczygliński
 
-https://github.com/szczyglis-dev/ultimate-chain-parser
+https://github.com/szczyglis-dev/extended-dump-bundle
+
+https://szczyglis.dev
 
 Contact: szczyglis@protonmail.com
 
