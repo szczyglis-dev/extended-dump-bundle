@@ -1,4 +1,4 @@
-PHP: **7.2.5+**, current release: **1.0.11** build 2022-04-25
+PHP: **7.2.5+**, current release: **1.0.12** build 2022-04-25
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -116,7 +116,7 @@ You can extend the debugger window with your own elements that will be placed th
 namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Szczyglis\ExtendedDumpBundle\Event\eXtendedDumpEvents;
+use Szczyglis\ExtendedDumpBundle\Event\ExtendedDumpEvents;
 use Szczyglis\ExtendedDumpBundle\Event\RenderEvent;
 
 class CustomDumpSubscriber implements EventSubscriberInterface
@@ -137,7 +137,7 @@ class CustomDumpSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            eXtendedDumpEvents::RENDER => 'onRender',
+            ExtendedDumpEvents::RENDER => 'onRender',
         ];
     }
 }
@@ -198,7 +198,7 @@ ___
 ___
 
 # Changelog
-**- 1.0.11** - Published first release. (2022-04-25)
+**- 1.0.12** - Published first release. (2022-04-25)
 
 # Credits
  
