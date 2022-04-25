@@ -77,19 +77,8 @@ class Output
         $content = $response->getContent();
         if (strpos($content, '</body>') !== false) {
             $content = str_replace('</body>', $data . '</body>', $content);
-        } else {
-            $content .= $data;
         }
 
         $response->setContent($content);
-    }
-
-    /**
-     * @return string
-     * @throws \ReflectionException
-     */
-    private function render(): string
-    {
-        return $this->generator->generate();
     }
 }

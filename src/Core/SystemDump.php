@@ -67,6 +67,7 @@ class SystemDump
 
         if (isset($_ENV) && !empty($_ENV)) {
             $server['$_ENV'] = $_ENV;
+            ksort($server['$_ENV']);
         }
         if (isset($_SERVER) && !empty($_SERVER)) {
             $server['$_SERVER'] = $_SERVER;

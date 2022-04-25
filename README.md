@@ -1,4 +1,4 @@
-PHP: **7.2.5+**, current release: **1.0.7** build 2022-04-25
+PHP: **7.2.5+**, current release: **1.0.8** build 2022-04-25
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -198,7 +198,7 @@ ___
 ___
 
 # Changelog
-**- 1.0.7** - Published first release. (2022-04-25)
+**- 1.0.8** - Published first release. (2022-04-25)
 
 # Credits
  
