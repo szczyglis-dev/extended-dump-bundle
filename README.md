@@ -17,7 +17,8 @@ composer require szczyglis/extended-dump-bundle
 - all debugged variables in one place
 - displaying many useful information, such as debug of the current user, the RequestStack object, POST array, cookies and server variables
 - the ability to expand with symfony events system.
-- 
+
+
 ## How it works:
 
 **Appearance after installation:**
