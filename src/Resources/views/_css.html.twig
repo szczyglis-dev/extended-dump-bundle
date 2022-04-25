@@ -1,0 +1,126 @@
+<style>
+    #xdump-container-{{ hash }} {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0px;
+        bottom: 20px;
+        width: auto;
+        height: 100%;
+        z-index: 999998;
+        background: #000;
+        opacity: 0.95;
+        overflow-y: auto;
+        padding: 0.5rem;
+        word-break: break-all;
+        max-width: 100%;
+        font-family: "Lucida Console", Monaco, monospace !important;
+        font-size: 0.7rem !important;
+        color: #fff !important;
+    }
+
+    #xdump-container-{{ hash }} .wrapper-{{ hash }} {
+        display: flex;
+    }
+
+    #xdump-container-{{ hash }} .wrapper-{{ hash }} .col-{{ hash }} {
+        padding: .5em;
+        font-family: "Lucida Console", Monaco, monospace !important;
+    }
+
+    #xdump-trigger-{{ hash }} {
+        position: fixed;
+        right: 0px;
+        bottom: 50px;
+        width: auto;
+        height: auto;
+        text-align: center;
+        padding: 10px;
+        z-index: 999999;
+        background: #394e20;
+        opacity: 0.9;
+        font-family: "Lucida Console", Monaco, monospace !important;
+        font-size: 0.7rem;
+        color: #fff;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    #xdump-trigger-{{ hash }}:hover {
+        background: #3f5723;
+        cursor: pointer;
+    }
+
+    #xdump-trigger-{{ hash }} .counter-{{ hash }} {
+
+    }
+
+    #xdump-container-{{ hash }} .header-{{ hash }} {
+        margin-bottom: 8px;
+        font-family: "Lucida Console", Monaco, monospace !important;
+        font-size: 0.9rem;
+    }
+
+    #xdump-container-{{ hash }} .header-{{ hash }}:hover {
+        color: #8BC34A !important;
+        cursor: pointer;
+    }
+
+    #xdump-container-{{ hash }} .label-{{ hash }} {
+        margin-bottom: 4px;
+        font-family: "Lucida Console", Monaco, monospace !important;
+        font-size: 0.8rem !important;
+        color: #8BC34A !important;
+    }
+
+    #xdump-container-{{ hash }} .trace-{{ hash }} {
+        font-size: 0.7rem !important;
+        font-family: "Lucida Console", Monaco, monospace !important;
+    }
+
+    #xdump-container-{{ hash }} .trace-{{ hash }} .function-{{ hash }} {
+        font-weight: bold;
+    }
+
+    #xdump-container-{{ hash }} .trace-{{ hash }} .class-{{ hash }} {
+        color: #5f9ea0;
+        font-weight: bold;
+    }
+
+    #xdump-container-{{ hash }} .trace-{{ hash }} .line-{{ hash }} {
+        color: yellow;
+    }
+
+    #xdump-container-{{ hash }} .trace-{{ hash }} .file-{{ hash }} {
+        color: gray;
+    }
+
+    #xdump-container-{{ hash }} .item-{{ hash }} {
+        border-bottom: 1px solid #253226;
+        padding-top: 8px;
+    }
+
+    @media only screen and (min-width: 920px) {
+        #xdump-container-{{ hash }} {
+            max-width: 90%;
+        }
+
+        #xdump-container-{{ hash }} .wrapper-{{ hash }} {
+            flex-wrap: nowrap;
+        }
+    }
+
+    @media only screen and (max-width: 920px) {
+        #xdump-trigger-{{ hash }} .env-{{ hash }} {
+            display: none
+        }
+
+        #xdump-container-{{ hash }} .wrapper-{{ hash }} {
+            flex-wrap: wrap;
+        }
+    }
+</style>

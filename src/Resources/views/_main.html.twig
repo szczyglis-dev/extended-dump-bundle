@@ -1,0 +1,23 @@
+{% extends '@ExtendedDump/base.html.twig' %}
+
+{% block main %}
+    <div class="wrapper-{{ hash }}">
+        {% for id, data in items %}
+            {% if data|length > 0 %}
+                {{ include('@ExtendedDump/_column.html.twig') }}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block trigger %}
+    {{ include('@ExtendedDump/_trigger.html.twig') }}
+{% endblock %}
+
+{% block javascript %}
+    {{ include('@ExtendedDump/_javascript.html.twig') }}
+{% endblock %}
+
+{% block css %}
+    {{ include('@ExtendedDump/_css.html.twig') }}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% block label %}
+    {% if item.label is not empty %}
+        <div class="label-{{ hash }}">
+            {{ item.label }}
+        </div>
+    {% endif %}
+    <div class="trace-{{ hash }}">
+        {% set func_separator = '' %}
+        {% if item.class is not empty %}
+            {% set func_separator = ':' %}
+        {% endif %}
+        {% if item.class is not empty or item.function is not empty %}
+            <span class="class-{{ hash }}">{{ item.class }}</span>{{ func_separator }}<span
+            class="function-{{ hash }}">{{ item.function }}</span>{% endif %}
+        {% if item.file is not empty %}<br/><span
+            class="file-{{ hash }}">{{ item.file }}</span>{% endif %}{% if item.line is not empty %}:<span
+            class="line-{{ hash }}">{{ item.line }}</span>{% endif %}
+    </div>
+{% endblock %}
+
+{% block dump %}
+    {{ dump(item.var) }}
+{% endblock %}

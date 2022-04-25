@@ -1,0 +1,137 @@
+<script>
+    function xdumpSetSessionStorage{{ hash }}(key, val) {
+        if (typeof (sessionStorage) != 'undefined') {
+            sessionStorage.setItem(key, val);
+        }
+    }
+
+    function xdumpGetSessionStorage{{ hash }}(key) {
+        if (typeof (sessionStorage) != 'undefined') {
+            return sessionStorage.getItem(key);
+        }
+    }
+
+    function msumpRemoveSessionStorage{{ hash }}(key) {
+        if (typeof (sessionStorage) != 'undefined') {
+            sessionStorage.removeItem(key);
+        }
+    }
+
+    function xdumpHasSessionStorage{{ hash }}(key) {
+        if (typeof (sessionStorage) != 'undefined') {
+            if (sessionStorage.getItem(key) !== null) return true;
+        }
+    }
+
+    function xdumpRestoreView{{ hash }}() {
+        if (xdumpHasSessionStorage{{ hash }}('xdump-expand-items-system')) {
+            if (xdumpGetSessionStorage{{ hash }}('xdump-expand-items-system') != 1) {
+                xdumpCollapseItems{{ hash }}('system');
+            } else {
+                xdumpExpandItems{{ hash }}('system');
+            }
+        }
+        if (xdumpHasSessionStorage{{ hash }}('xdump-expand-items-user')) {
+            if (xdumpGetSessionStorage{{ hash }}('xdump-expand-items-user') != 1) {
+                xdumpCollapseItems{{ hash }}('user');
+            } else {
+                xdumpExpandItems{{ hash }}('user');
+            }
+        }
+        if (xdumpHasSessionStorage{{ hash }}('xdump-expand-items-event')) {
+            if (xdumpGetSessionStorage{{ hash }}('xdump-expand-items-event') != 1) {
+                xdumpCollapseItems{{ hash }}('event');
+            } else {
+                xdumpExpandItems{{ hash }}('event');
+            }
+        }
+        if (xdumpHasSessionStorage{{ hash }}('xdump-opened')) {
+            xdumpShow{{ hash }}();
+        }
+    }
+
+    function xdumpCollapseItems{{ hash }}(id) {
+        var elements = document.querySelectorAll('.xdump-items-{{ hash }}[data-id=' + id + ']');
+        [].forEach.call(elements, function (elem) {
+            elem.style.display = "none";
+            xdumpSetSessionStorage{{ hash }}('xdump-expand-items-' + id, 0);
+        });
+        var icons = document.querySelectorAll('.xdump-collapse-{{ hash }}[data-id=' + id + '] .icon-{{ hash }}');
+        [].forEach.call(icons, function (elem) {
+            elem.innerHTML = '▲';
+        });
+    }
+
+    function xdumpExpandItems{{ hash }}(id) {
+        var elements = document.querySelectorAll('.xdump-items-{{ hash }}[data-id=' + id + ']');
+        [].forEach.call(elements, function (elem) {
+            elem.style.display = "block";
+            xdumpSetSessionStorage{{ hash }}('xdump-expand-items-' + id, 1);
+        });
+        var icons = document.querySelectorAll('.xdump-collapse-{{ hash }}[data-id=' + id + '] .icon-{{ hash }}');
+        [].forEach.call(icons, function (elem) {
+            elem.innerHTML = '▼';
+        });
+    }
+
+    function xdumpShow{{ hash }}() {
+        document.getElementById("xdump-container-{{ hash }}").style.display = "block";
+        xdumpSetSessionStorage{{ hash }}('xdump-opened', 1);
+    }
+
+    function xdumpHide{{ hash }}() {
+        document.getElementById("xdump-container-{{ hash }}").style.display = "none";
+        msumpRemoveSessionStorage{{ hash }}('xdump-opened');
+    }
+
+    function xdumpRegisterListeners{{ hash }}() {
+        document.getElementById("xdump-trigger-{{ hash }}").addEventListener("click", function () {
+            var container = document.getElementById("xdump-container-{{ hash }}");
+            if (container.style.display == "block") {
+                xdumpHide{{ hash }}()
+            } else {
+                xdumpShow{{ hash }}();
+            }
+        });
+
+        var triggers = document.getElementsByClassName('xdump-collapse-{{ hash }}');
+        for (var i = 0; i < triggers.length; i++) {
+            (function (index) {
+                triggers[index].addEventListener("click", function () {
+                    var id = this.getAttribute('data-id');
+                    var items = document.getElementsByClassName('xdump-items-{{ hash }}');
+                    for (var j = 0; j < items.length; j++) {
+                        (function (index) {
+                            var idItems = items[index].getAttribute('data-id');
+                            if (id == idItems) {
+                                if (items[index].style.display == "none") {
+                                    xdumpExpandItems{{ hash }}(id);
+                                } else {
+                                    xdumpCollapseItems{{ hash }}(id);
+                                }
+                            }
+                        })(j);
+                    }
+                })
+            })(i);
+        }
+    }
+
+    document.onkeydown = function (event) {
+        event = event || window.event;
+        var esc = false;
+        if ("key" in event) {
+            esc = (event.key === "Escape" || event.key === "Esc");
+        } else {
+            esc = (event.keyCode === 27);
+        }
+        if (esc) {
+            var container = document.getElementById("xdump-container-{{ hash }}");
+            if (container.style.display == "block") {
+                container.style.display = "none";
+            }
+        }
+    };
+    xdumpRegisterListeners{{ hash }}();
+    xdumpRestoreView{{ hash }}();
+</script>

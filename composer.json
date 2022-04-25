@@ -1,0 +1,51 @@
+{
+    "name": "szczyglis/extended-dump-bundle",
+    "description": "Extension offering new debugging features for Symfony 4, 5 and 6 frameworks",
+    "homepage": "https://github.com/szczyglis-dev/extended-dump-bundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": [
+        "symfony",
+        "framework",
+        "bundle",
+        "extension",
+        "debug",
+        "debugging",
+        "debugger",
+        "customize",
+        "dump",
+        "xdump"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Szczyglis\\ExtendedDumpBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Szczyglis\\ExtendedDumpBundle\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "szczyglis",
+            "email": "szczyglis@protonmail.com",
+            "homepage": "https://szczyglis.dev"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "symfony/config": "^4.4|^5.0|^6.0",
+        "symfony/debug-bundle": "^4.4|^5.0|^6.0",
+        "symfony/dependency-injection": "^4.4|^5.0|^6.0",
+        "symfony/event-dispatcher": "^4.4|^5.0|^6.0",
+        "symfony/http-foundation": "^4.4|^5.0|^6.0",
+        "symfony/http-kernel": "^4.4|^5.0|^6.0",
+        "symfony/security-bundle": "^4.4|^5.0|^6.0",
+        "symfony/twig-bundle": "^4.4|^5.0|^6.0",
+        "symfony/yaml": "^4.4|^5.0|^6.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.4|^5.0|^6.0"
+    }
+}

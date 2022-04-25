@@ -1,0 +1,24 @@
+services:
+  
+  Szczyglis\ExtendedDumpBundle\Core\Dumper:
+    autowire: true
+
+  Szczyglis\ExtendedDumpBundle\Core\Generator:
+    autowire: true
+    arguments: 
+      0: []
+
+  Szczyglis\ExtendedDumpBundle\Core\Output:
+    autowire: true
+
+  Szczyglis\ExtendedDumpBundle\Core\SystemDump:
+    autowire: true
+
+  Szczyglis\ExtendedDumpBundle\EventSubscriber\ResponseSubscriber:
+    autowire: true
+    tags:
+      - { name: kernel.event_subscriber }  
+
+  Szczyglis\ExtendedDumpBundle\Twig\ExtendedDumpTwigExtension:
+    tags:
+      - { name: twig.extension }

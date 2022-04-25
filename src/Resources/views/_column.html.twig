@@ -1,0 +1,19 @@
+{% set extra_style = '' %}
+{% set icon = '▼' %}
+{% if config['display']['sections'][id]['collapsed'] is defined and config['display']['sections'][id]['collapsed'] == true %}
+    {% set extra_style = ' style=display:none' %}
+    {% set icon = '▲' %}
+{% endif %}
+
+<div class="col-{{ hash }}">
+    {% block header %}
+        <div class="header-{{ hash }} xdump-collapse-{{ hash }}" data-id="{{ id }}">
+            {{ id }} <span class="icon-{{ hash }}">{{ icon }}</span>
+        </div>
+    {% endblock %}
+    {% block items %}
+        <div class="xdump-items-{{ hash }}" data-id="{{ id }}"{{ extra_style }}>
+            {{ include('@ExtendedDump/_items.html.twig') }}
+        </div>
+    {% endblock %}
+</div>

@@ -1,0 +1,5 @@
+{% for item in data %}
+    <div class="item-{{ hash }}">
+        {{ include('@ExtendedDump/_item.html.twig') }}
+    </div>
+{% endfor %}	
