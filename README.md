@@ -4,7 +4,7 @@ PHP: **7.2.5+**, current release: **1.0.4** build 2022-04-25
 
 # eXtended Dump Bundle
 
-**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework 'dump' function with new features. It attaches a new window to the application with the debug collected by all dumps. In one place you can get quick access to debugged variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
+**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework `dump` function with new features. It attaches a new window to the application with the debug collected by all dumps. In one place you can get quick access to debugged variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
 
 ## How to install:
 ```
