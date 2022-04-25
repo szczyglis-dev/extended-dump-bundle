@@ -1,10 +1,10 @@
-PHP: **7.2.5+**, current release: **1.0.4** build 2022-04-25
+PHP: **7.2.5+**, current release: **1.0.5** build 2022-04-25
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
 # eXtended Dump Bundle
 
-**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework `dump` function with new features. It attaches a new window to the application with the debug collected by all dumps. In one place you can get quick access to debugged variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
+**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework's `dump` function with new features. It attaches a new window to the application with the debug collected by all dumps made by the new way. In one place you can get quick access to dumped variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
 
 ## How to install:
 ```
@@ -38,7 +38,7 @@ The debug window is divided into 3 sections:
 
 ## The new `xdump` global function
 
-The extension adds a new global function to the framework: `xdump`. Thanks to it, you can use Exended Dump from anywhere in the code. It works similar to the standard `dump` function, except that debugged variables fly collectively to the eXtended Dump window. Example of use:
+The extension adds a new global function to the framework's: `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged variables fly collectively to the **eXtended Dump** window. Example of use:
 
 ```php
 $var = 'some variable';
@@ -90,7 +90,7 @@ Result of the action:
 
 ## Extension for Twig
 
-You can use eXtended Dump in Twig templates - twig extension is included in the package. 
+You can use **eXtended Dump** in Twig templates - twig extension is included in the package. 
 To use in a template, just use the `xdump` function inside twig template:
 
 ```twig
@@ -198,7 +198,7 @@ ___
 ___
 
 # Changelog
-**- 1.0.4** - Published first release. (2022-04-25)
+**- 1.0.5** - Published first release. (2022-04-25)
 
 # Credits
  
