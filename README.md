@@ -1,4 +1,4 @@
-PHP: **7.2.5+**, current release: **1.0.1** build 2022-04-25
+PHP: **7.2.5+**, current release: **1.0.2** build 2022-04-25
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -41,9 +41,8 @@ The debug window is divided into 3 sections:
 The extension adds a new global function to the framework: `xdump`. Thanks to it, you can use Exended Dump from anywhere in the code. It works similar to the standard `dump` function, except that debugged variables fly collectively to the eXtended Dump window. Example of use:
 
 ```php
-	$var = 'some variable';
-
-	xdump($var, "some label");
+$var = 'some variable';
+xdump($var, "some label");
 ```
 
 *The "label" parameter is optional.*
@@ -97,7 +96,7 @@ To use in a template, just use the `xdump` function inside twig template:
 ```twig
 # templates/template.html.twig
 
-{% set variable = "my variable %}
+{% set variable = "my variable" %}
 
 {{ xdump(variable, "some label") }}
 ```
@@ -199,7 +198,7 @@ ___
 ___
 
 # Changelog
-**- 1.0.1** - Published first release. (2022-04-25)
+**- 1.0.2** - Published first release. (2022-04-25)
 
 # Credits
  
