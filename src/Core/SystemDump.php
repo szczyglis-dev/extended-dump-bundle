@@ -29,6 +29,19 @@ use Szczyglis\ExtendedDumpBundle\Event\RenderEvent;
  */
 class SystemDump
 {
+    const LABEL_REQUEST_STACK = 'RequestStack';
+    const LABEL_SESSION = 'Session';
+    const LABEL_GET = '$_GET';
+    const LABEL_POST = '$_POST';
+    const LABEL_COOKIES = 'Cookies';
+    const LABEL_SERVER = 'Server';
+    const LABEL_USER = 'User';    
+    const LABEL_PHP = 'PHP';
+    const LABEL_PHP_EXTENSIONS = 'PHP-EXT';
+    const LABEL_ENV = '$_ENV';
+    const LABEL_SERVER = '$_SERVER';
+    const LABEL_ITEMS = 'item(s)';
+
     /**
      * @var Security
      */
@@ -56,22 +69,22 @@ class SystemDump
     public function getVars(): array
     {
         $server = [];
-        $server['PHP'] = phpversion();
-        $server['PHP-EXT'] = [];
+        $server[self::LABEL_PHP] = phpversion();
+        $server[self::LABEL_PHP_EXTENSIONS] = [];
 
         $extensions = get_loaded_extensions();
         foreach ($extensions as $extension) {
-            $server['PHP-EXT'][strtolower($extension)] = phpversion($extension);
+            $server[self::LABEL_PHP_EXTENSIONS][strtolower($extension)] = phpversion($extension);
         }
-        ksort($server['PHP-EXT']);
+        ksort($server[self::LABEL_PHP_EXTENSIONS]);
 
         if (isset($_ENV) && !empty($_ENV)) {
-            $server['$_ENV'] = $_ENV;
-            ksort($server['$_ENV']);
+            $server[self::LABEL_ENV] = $_ENV;
+            ksort($server[self::LABEL_ENV]);
         }
         if (isset($_SERVER) && !empty($_SERVER)) {
-            $server['$_SERVER'] = $_SERVER;
-            ksort($server['$_SERVER']);
+            $server[self::LABEL_SERVER] = $_SERVER;
+            ksort($server[self::LABEL_SERVER]);
         }
         return $server;
     }
@@ -81,44 +94,44 @@ class SystemDump
      */
     public function dump()
     {        
-        Dumper::xdump($this->requestStack, 'RequestStack', Dumper::CALLER_SYSTEM);
+        Dumper::xdump($this->requestStack, self::LABEL_REQUEST_STACK, Dumper::CALLER_SYSTEM);
 
         // Symfony versions difference fixes
         if (method_exists($this->requestStack, 'getSession')) {
             $data = $this->requestStack->getSession();
-            $k = $data->count().' items';
-            Dumper::xdump([$k => $data->all()], 'Session', Dumper::CALLER_SYSTEM);
+            $k = $data->count().' '.self::LABEL_ITEMS;
+            Dumper::xdump([$k => $data->all()], self::LABEL_SESSION, Dumper::CALLER_SYSTEM);
         }        
         if (method_exists($this->requestStack, 'getMainRequest')) {
             $data = $this->requestStack->getMainRequest()->query;
-            $k = $data->count().' items';
-            Dumper::xdump([$k => $data->all()], '$_GET', Dumper::CALLER_SYSTEM);
+            $k = $data->count().' '.self::LABEL_ITEMS;
+            Dumper::xdump([$k => $data->all()], self::LABEL_GET, Dumper::CALLER_SYSTEM);
 
             $data = $this->requestStack->getMainRequest()->request;
-            $k = $data->count().' items';
-            Dumper::xdump([$k => $data->all()], '$_POST', Dumper::CALLER_SYSTEM);
+            $k = $data->count().' '.self::LABEL_ITEMS;
+            Dumper::xdump([$k => $data->all()], self::LABEL_POST, Dumper::CALLER_SYSTEM);
 
             $data = $this->requestStack->getMainRequest()->cookies;
-            $k = $data->count().' items';
-            Dumper::xdump([$k => $data->all()], 'Cookies', Dumper::CALLER_SYSTEM);
+            $k = $data->count().' '.self::LABEL_ITEMS;
+            Dumper::xdump([$k => $data->all()], self::LABEL_COOKIES, Dumper::CALLER_SYSTEM);
         } else if (method_exists($this->requestStack, 'getMasterRequest')) {
             $data = $this->requestStack->getMasterRequest()->query;
-            $k = $data->count().' items';
-            Dumper::xdump([$k => $data->all()], '$_GET', Dumper::CALLER_SYSTEM);
+            $k = $data->count().' '.self::LABEL_ITEMS;
+            Dumper::xdump([$k => $data->all()], self::LABEL_GET, Dumper::CALLER_SYSTEM);
 
             $data = $this->requestStack->getMasterRequest()->request;
-            $k = $data->count().' items';
-            Dumper::xdump([$k => $data->all()], '$_POST', Dumper::CALLER_SYSTEM);
+            $k = $data->count().' '.self::LABEL_ITEMS;
+            Dumper::xdump([$k => $data->all()], self::LABEL_POST, Dumper::CALLER_SYSTEM);
 
             $data = $this->requestStack->getMasterRequest()->cookies;
-            $k = $data->count().' items';
-            Dumper::xdump([$k => $data->all()], 'Cookies', Dumper::CALLER_SYSTEM);
+            $k = $data->count().' '.self::LABEL_ITEMS;
+            Dumper::xdump([$k => $data->all()], self::LABEL_COOKIES, Dumper::CALLER_SYSTEM);
         }        
 
         $server = $this->getVars();
-        Dumper::xdump($server, 'Server', Dumper::CALLER_SYSTEM);
+        Dumper::xdump($server, self::LABEL_SERVER, Dumper::CALLER_SYSTEM);
 
-        $k = 'user';
+        $k = self::LABEL_USER;
         $user = null;
         if (!is_null($this->security->getUser())) {
             $user = $this->security->getUser();
@@ -127,7 +140,10 @@ class SystemDump
             } elseif (method_exists($user, 'getUserIdentifier')) {
                 $k = $user->getUserIdentifier();
             }
+            if (empty($k)) {
+                $k = self::LABEL_USER;
+            }
         }
-        Dumper::xdump([$k => $user], 'User', Dumper::CALLER_SYSTEM);
+        Dumper::xdump([$k => $user], self::LABEL_USER, Dumper::CALLER_SYSTEM);
     }
 }

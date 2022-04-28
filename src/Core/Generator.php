@@ -46,7 +46,7 @@ class Generator
     /**
      * @var SystemDump
      */
-    private $systemDump;
+    private $system;
 
     /**
      * @var array Configuration
@@ -59,15 +59,15 @@ class Generator
      * @param Environment $twig
      * @param KernelInterface $kernel
      * @param EventDispatcherInterface $dispatcher
-     * @param SystemDump $systemDump
+     * @param SystemDump $system
      */
-    public function __construct(array $config, Environment $twig, KernelInterface $kernel, EventDispatcherInterface $dispatcher, SystemDump $systemDump)
+    public function __construct(array $config, Environment $twig, KernelInterface $kernel, EventDispatcherInterface $dispatcher, SystemDump $system)
     {
         $this->config = $config;
         $this->twig = $twig;
         $this->kernel = $kernel;
         $this->dispatcher = $dispatcher;
-        $this->systemDump = $systemDump;
+        $this->system = $system;
     }
 
     public function dispatchEvent()
@@ -102,7 +102,7 @@ class Generator
             return false;
         }
 
-        $this->systemDump->dump();
+        $this->system->dump();
 
         $this->dispatchEvent();
 
