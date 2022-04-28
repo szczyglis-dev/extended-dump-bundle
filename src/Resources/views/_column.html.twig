@@ -8,7 +8,7 @@
 <div class="col-{{ hash }}">
     {% block header %}
         <div class="header-{{ hash }} xdump-collapse-{{ hash }}" data-id="{{ id }}">
-            {{ id }} <span class="icon-{{ hash }}">{{ icon }}</span>
+            {{ id }} <span class="c-{{ hash }}">({{ data|length }})</span> <span class="icon-{{ hash }}">{{ icon }}</span>
         </div>
     {% endblock %}
     {% block items %}

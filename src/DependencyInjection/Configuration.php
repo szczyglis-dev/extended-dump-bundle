@@ -70,7 +70,7 @@ class Configuration implements ConfigurationInterface
                                             ->defaultTrue()
                                         ->end()
                                         ->booleanNode('collapsed')
-                                            ->defaultTrue()
+                                            ->defaultFalse()
                                         ->end()
                                     ->end()
                                 ->end()    
