@@ -133,10 +133,6 @@ class Generator
             $items[$key][] = $item;
         }
 
-        if (!isset($this->config['display']['sections']['system']['collapsed'])) {
-            $this->config['display']['sections']['system']['collapsed'] = true;
-        }
-
         $hash = substr(md5(random_bytes(32)), 0, 5);
 
         return $this->twig->render('@ExtendedDump/_main.html.twig', [

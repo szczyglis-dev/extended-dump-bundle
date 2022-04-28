@@ -177,7 +177,7 @@ extended_dump:
         collapsed: false # collapses "event" section at start
       system: 
         enabled: true # enables/disables "system" section
-        collapsed: true # collapses "system" section at start
+        collapsed: false # collapses "system" section at start
 ```
 ___
 
@@ -202,7 +202,7 @@ ___
 
 **- 1.0.14** - Updated composer.json (2022-04-28)
 
-**- 1.0.17** - User debug moved to bottom in debugger window, data collapsed at start (2022-04-28)
+**- 1.0.18** - User debug moved to bottom in debugger window, data collapsed at start, added version info (2022-04-28)
 
 # Credits
  
