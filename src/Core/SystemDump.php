@@ -85,14 +85,34 @@ class SystemDump
 
         // Symfony versions difference fixes
         if (method_exists($this->requestStack, 'getSession')) {
-            Dumper::xdump($this->requestStack->getSession()->all(), 'Session', Dumper::CALLER_SYSTEM);
+            $data = $this->requestStack->getSession();
+            $k = $data->count().' items';
+            Dumper::xdump([$k => $data->all()], 'Session', Dumper::CALLER_SYSTEM);
         }        
         if (method_exists($this->requestStack, 'getMainRequest')) {
-            Dumper::xdump($this->requestStack->getMainRequest()->request->all(), '$_POST', Dumper::CALLER_SYSTEM);
-            Dumper::xdump($this->requestStack->getMainRequest()->cookies->all(), 'Cookies', Dumper::CALLER_SYSTEM);
+            $data = $this->requestStack->getMainRequest()->query;
+            $k = $data->count().' items';
+            Dumper::xdump([$k => $data->all()], '$_GET', Dumper::CALLER_SYSTEM);
+
+            $data = $this->requestStack->getMainRequest()->request;
+            $k = $data->count().' items';
+            Dumper::xdump([$k => $data->all()], '$_POST', Dumper::CALLER_SYSTEM);
+
+            $data = $this->requestStack->getMainRequest()->cookies;
+            $k = $data->count().' items';
+            Dumper::xdump([$k => $data->all()], 'Cookies', Dumper::CALLER_SYSTEM);
         } else if (method_exists($this->requestStack, 'getMasterRequest')) {
-            Dumper::xdump($this->requestStack->getMasterRequest()->request->all(), '$_POST', Dumper::CALLER_SYSTEM);
-            Dumper::xdump($this->requestStack->getMasterRequest()->cookies->all(), 'Cookies', Dumper::CALLER_SYSTEM);
+            $data = $this->requestStack->getMasterRequest()->query;
+            $k = $data->count().' items';
+            Dumper::xdump([$k => $data->all()], '$_GET', Dumper::CALLER_SYSTEM);
+
+            $data = $this->requestStack->getMasterRequest()->request;
+            $k = $data->count().' items';
+            Dumper::xdump([$k => $data->all()], '$_POST', Dumper::CALLER_SYSTEM);
+
+            $data = $this->requestStack->getMasterRequest()->cookies;
+            $k = $data->count().' items';
+            Dumper::xdump([$k => $data->all()], 'Cookies', Dumper::CALLER_SYSTEM);
         }        
 
         $server = $this->getVars();
