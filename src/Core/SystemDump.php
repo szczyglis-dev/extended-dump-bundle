@@ -80,8 +80,7 @@ class SystemDump
      * @return void
      */
     public function dump()
-    {
-        Dumper::xdump($this->security->getUser(), 'User', Dumper::CALLER_SYSTEM);
+    {        
         Dumper::xdump($this->requestStack, 'RequestStack', Dumper::CALLER_SYSTEM);
 
         // Symfony versions difference fixes
@@ -98,5 +97,7 @@ class SystemDump
 
         $server = $this->getVars();
         Dumper::xdump($server, 'Server', Dumper::CALLER_SYSTEM);
+
+        Dumper::xdump($this->security->getUser(), 'User', Dumper::CALLER_SYSTEM);
     }
 }
