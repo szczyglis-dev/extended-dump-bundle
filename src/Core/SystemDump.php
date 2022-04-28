@@ -39,7 +39,7 @@ class SystemDump
     const LABEL_PHP = 'PHP';
     const LABEL_PHP_EXTENSIONS = 'PHP-EXT';
     const LABEL_ENV = '$_ENV';
-    const LABEL_SERVER = '$_SERVER';
+    const LABEL_SERVER_KEY = '$_SERVER';
     const LABEL_ITEMS = 'item(s)';
 
     /**
@@ -83,8 +83,8 @@ class SystemDump
             ksort($server[self::LABEL_ENV]);
         }
         if (isset($_SERVER) && !empty($_SERVER)) {
-            $server[self::LABEL_SERVER] = $_SERVER;
-            ksort($server[self::LABEL_SERVER]);
+            $server[self::LABEL_SERVER_KEY] = $_SERVER;
+            ksort($server[self::LABEL_SERVER_KEY]);
         }
         return $server;
     }
