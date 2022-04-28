@@ -98,6 +98,16 @@ class SystemDump
         $server = $this->getVars();
         Dumper::xdump($server, 'Server', Dumper::CALLER_SYSTEM);
 
-        Dumper::xdump($this->security->getUser(), 'User', Dumper::CALLER_SYSTEM);
+        $k = 'user';
+        $user = null;
+        if (!is_null($this->security->getUser())) {
+            $user = $this->security->getUser();
+            if (method_exists($user, 'getUsername')) {
+                $k = $user->getUsername();
+            } elseif (method_exists($user, 'getUserIdentifier')) {
+                $k = $user->getUserIdentifier();
+            }
+        }
+        Dumper::xdump([$k => $user], 'User', Dumper::CALLER_SYSTEM);
     }
 }
