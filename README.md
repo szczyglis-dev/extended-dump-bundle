@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.25** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.0.26** build 2022-04-29
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -33,8 +33,7 @@ The debug window is divided into 3 sections:
 - **event** - the event section displays the debug added using your own Event Subscriber,
 - **system** - displays handy, most useful system information.
 
-![main](https://user-images.githubusercontent.com/61396542/165001832-976a8387-ce05-4ef2-935a-f197515ef215.png)
-
+![demo](https://user-images.githubusercontent.com/61396542/165868045-66952666-2c08-4d59-a790-9f4ddd225f1f.png)
 
 ## The new `xdump` global function
 
@@ -45,7 +44,7 @@ $foo1 = 'bar1';
 $foo2 = 'bar2';
 $foo3 = 'bar3';
 
-xdump($foo1, $foo2, $foo3, [...]);
+xdump($foo1, $foo2, $foo3);
 ```
 
 The above code added anywhere in the application will add the "app" section to the debugger and display the debug variable (or many variables) there. Example:
@@ -87,8 +86,7 @@ class IndexController extends AbstractController
 
 Result of the action:
 
-![app](https://user-images.githubusercontent.com/61396542/165001848-10d002a8-1384-48d1-a0e2-3107210227ac.png)
-
+![result](https://user-images.githubusercontent.com/61396542/165867858-ef8a021a-f2dc-4c77-9695-64458e826fb3.png)
 
 ## Extension for Twig
 
@@ -204,7 +202,7 @@ ___
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-**- 1.0.25** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
+**- 1.0.26** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 # Credits
  
