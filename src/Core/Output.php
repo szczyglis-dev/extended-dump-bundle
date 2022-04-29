@@ -69,7 +69,7 @@ class Output
             return;
         }
 
-        $data = $this->generator->generate();
+        $data = $this->generator->generate($event);
         if ($data === false) {
             return;
         }

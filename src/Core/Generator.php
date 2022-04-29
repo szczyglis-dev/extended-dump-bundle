@@ -14,6 +14,7 @@ namespace Szczyglis\ExtendedDumpBundle\Core;
 use Twig\Environment;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Szczyglis\ExtendedDumpBundle\Event\MultiDumpEvents;
 use Szczyglis\ExtendedDumpBundle\Event\RenderEvent;
 
@@ -82,10 +83,11 @@ class Generator
     }
 
     /**
+     * @param ResponseEvent $event
      * @return string Rendered output
      * @throws \ReflectionException
      */
-    public function generate()
+    public function generate(ResponseEvent $event)
     {
         $env = $this->kernel->getEnvironment();
         if (isset($this->config['env']) && !empty($this->config['env'])) {
@@ -102,7 +104,7 @@ class Generator
             return false;
         }
 
-        $this->system->dump();
+        $this->system->dump($event);
 
         $this->dispatchEvent();
 

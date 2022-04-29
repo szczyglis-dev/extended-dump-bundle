@@ -31,11 +31,11 @@
                 xdumpExpandItems{{ hash }}('system');
             }
         }
-        if (xdumpHasSessionStorage{{ hash }}('xdump-expand-items-user')) {
-            if (xdumpGetSessionStorage{{ hash }}('xdump-expand-items-user') != 1) {
-                xdumpCollapseItems{{ hash }}('user');
+        if (xdumpHasSessionStorage{{ hash }}('xdump-expand-items-app')) {
+            if (xdumpGetSessionStorage{{ hash }}('xdump-expand-items-app') != 1) {
+                xdumpCollapseItems{{ hash }}('app');
             } else {
-                xdumpExpandItems{{ hash }}('user');
+                xdumpExpandItems{{ hash }}('app');
             }
         }
         if (xdumpHasSessionStorage{{ hash }}('xdump-expand-items-event')) {

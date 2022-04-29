@@ -29,7 +29,9 @@ use Szczyglis\ExtendedDumpBundle\Event\RenderEvent;
  */
 class SystemDump
 {
-    const LABEL_REQUEST_STACK = 'RequestStack';
+    const LABEL_REQUEST_RESPONSE = 'Request / Response';
+    const LABEL_REQUEST = 'Request';
+    const LABEL_RESPONSE = 'Response';
     const LABEL_SESSION = 'Session';
     const LABEL_GET = '$_GET';
     const LABEL_POST = '$_POST';
@@ -90,11 +92,16 @@ class SystemDump
     }
 
     /**
+     * @param ResponseEvent $event
      * @return void
      */
-    public function dump()
+    public function dump(ResponseEvent $event)
     {        
-        Dumper::xdump($this->requestStack, self::LABEL_REQUEST_STACK, Dumper::CALLER_SYSTEM);
+        $data = [
+            self::LABEL_REQUEST => $this->requestStack,
+            self::LABEL_RESPONSE => $event->getResponse(),
+        ];
+        Dumper::xdump($data, self::LABEL_REQUEST_RESPONSE, Dumper::CALLER_SYSTEM);
 
         // Symfony versions difference fixes
         if (method_exists($this->requestStack, 'getSession')) {
