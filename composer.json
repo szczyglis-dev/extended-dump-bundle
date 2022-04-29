@@ -35,6 +35,7 @@
     ],
     "require": {
         "php": "^7.2.5|^8.0",
+        "doctrine/orm": "^2.11",
         "doctrine/doctrine-bundle": "^2.5",
         "symfony/config": "^4.4|^5.0|^6.0",
         "symfony/debug-bundle": "^4.4|^5.0|^6.0",
