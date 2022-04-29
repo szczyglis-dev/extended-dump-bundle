@@ -145,9 +145,9 @@ class DoctrineDumper implements InternalDumperInterface
                     $repositoryMethods = [];
                     $list = $reflector->getMethods();
                     foreach ($list as $entry) {
-                        $methName = $entry->getName();
-                        if (!in_array($methName, $hiddenMethods)) {
-                            $repositoryMethods[] = $entry->getName();
+                        $m = $entry->getName();
+                        if (!in_array($m, $hiddenMethods)) {
+                            $repositoryMethods[] = $m;
                         }                        
                     }
                     sort($repositoryMethods);

@@ -24,6 +24,6 @@ use \Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class ExtendedDumpBundle extends Bundle
 {
-    public const VERSION = '1.1.6';
+    public const VERSION = '1.1.7';
     public const VERSION_BUILD = '2022-04-29';
 }

@@ -48,7 +48,7 @@ class Generator
     private $kernel;
 
     /**
-     * @var SystemDump
+     * @var InternalDumper
      */
     private $internalDumper;
 
