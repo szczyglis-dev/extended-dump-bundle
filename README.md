@@ -44,7 +44,7 @@ The extension adds to framework a new global function called `xdump`. Thanks to 
 *Example of use:*
 
 ```php
-/**
+    /**
      * @Route("/", name="index")
      * @param Request $request
      * @return Response
@@ -57,7 +57,7 @@ The extension adds to framework a new global function called `xdump`. Thanks to 
 
         xdump($foo1, $foo2, $foo3);
 
-        return $this->render('index.html.twig');
+        // ...
     }
 ```
 The above code added anywhere in the application (both in controllers and in services) will add the "app" section to the debugger and display the dumped object (or objects) there. 
