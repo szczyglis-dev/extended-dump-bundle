@@ -99,10 +99,16 @@ class DoctrineDumper implements InternalDumperInterface
                 if (isset($item->fieldMappings[$n]['type'])) {
                     $type = $item->fieldMappings[$n]['type'];
                 } else if (isset($item->associationMappings[$n]['targetEntity'])) {
-                    $type = '['.(new \ReflectionClass($item->associationMappings[$n]['targetEntity']))->getShortName().']';
-                    if (!empty($item->associationMappings[$n]['inversedBy'])) {
-                        $type .= ' >' . $item->associationMappings[$n]['inversedBy'];
-                    }
+                    $isOwningSide = $item->associationMappings[$n]['isOwningSide'];
+                    if ($isOwningSide) {
+                        $type = '['.(new \ReflectionClass($item->associationMappings[$n]['targetEntity']))->getShortName().']';
+                        if (!empty($item->associationMappings[$n]['inversedBy'])) {
+                            $type .= ' (' . $item->associationMappings[$n]['inversedBy'].')';
+                        }
+                    } else {
+                        $type = '['.(new \ReflectionClass($item->associationMappings[$n]['targetEntity']))->getShortName().']';
+                        $n = '['.$n.']';
+                    }                    
                 }
                 $properties[$n] = $type;
             }
