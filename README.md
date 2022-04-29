@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.35** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.0.36** build 2022-04-29
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -34,7 +34,7 @@ The debug window is divided into 3 sections:
 - **system** - displays handy, most useful system information.
 
 ![debug](https://user-images.githubusercontent.com/61396542/165871308-8b86285f-0294-4c5a-9eb9-11fab12fa384.png)
-*\*screenshot from newest version - v1.0.35*
+*\*screenshot from newest version - v1.0.36*
 
 ## The new `xdump` global function
 
@@ -201,7 +201,7 @@ ___
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-**- 1.0.35** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
+**- 1.0.36** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 # Credits
  
