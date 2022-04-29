@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.23** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.0.24** build 2022-04-29
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -41,11 +41,12 @@ The debug window is divided into 3 sections:
 The extension adds a new global function to the framework's: `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged variables fly collectively to the **eXtended Dump** window. Example of use:
 
 ```php
-$var = 'some variable';
-xdump($var, "some label");
-```
+$foo1 = 'bar1';
+$foo2 = 'bar2';
+$foo3 = 'bar3';
 
-*The "label" parameter is optional.*
+xdump($foo1, $foo2, $foo3, [...]);
+```
 
 The above code added anywhere in the application will add the "app" section to the debugger and display the debug variable (or many variables) there. Example:
 
@@ -74,9 +75,10 @@ class IndexController extends AbstractController
      */
     public function index(Request $request)
     {
-        $var = 'some variable';
+        $foo1 = 'bar1';
+        $foo2 = 'bar2';
 
-        xdump($var, "some label"); // second parameter - "label" is optional
+        xdump($foo1, $foo2); // you can put one or multiple arguments
 
         return $this->render('index.html.twig');
     }
@@ -96,9 +98,11 @@ To use in a template, just use the `xdump` function inside twig template:
 ```twig
 # templates/template.html.twig
 
-{% set variable = "my variable" %}
+{% set foo1 = "bar1" %}
+{% set foo2 = "bar2" %}
+{% set foo3 = "bar3" %}
 
-{{ xdump(variable, "some label") }}
+{{ xdump(foo1, foo2, foo3, [...]) }} # you can put multiple arguments also in Twig
 ```
 
 *The "label" parameter is optional.*
@@ -150,11 +154,11 @@ The above will add a new section to the debugger window with the following eleme
 You can add multiple items:
 
 ```php
-$var = "my variable";
-$var2 = "my variable2";
+$foo1 = "bar1";
+$foo2 = "bar2";
 
-$event->add($var, "optional label");
-$event->add($var2);
+$event->add($foo1, "optional label");
+$event->add($foo2);
 ```
 
 ## Configuration
@@ -200,9 +204,7 @@ ___
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-**- 1.0.14** - Updated composer.json (2022-04-28)
-
-**- 1.0.23** - User debug moved to bottom in debugger window, data collapsed at start, added version info, added section items counters and more (2022-04-29)
+**- 1.0.24** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 # Credits
  

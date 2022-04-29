@@ -30,9 +30,13 @@ class ExtendedDumpTwigExtension extends AbstractExtension
      * @param $var
      * @param null $label
      */
-    public function xdump($var, $label = null)
+    public function xdump()
     {
-        Dumper::xdump($var, $label, Dumper::CALLER_TWIG);
+        $numargs = func_num_args();
+        $arg_list = func_get_args();
+        for ($i = 0; $i < $numargs; $i++) {
+            Dumper::xdump($arg_list[$i], null, Dumper::CALLER_TWIG);
+        }
     }
 
     /**

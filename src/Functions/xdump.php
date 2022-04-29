@@ -17,9 +17,13 @@ if (!function_exists('xdump')) {
      * @param string|null $label
      * @return mixed
      */
-    function xdump($var, ?string $label = null)
+    function xdump()
     {
-        Dumper::xdump($var, $label, Dumper::CALLER_FUNC);
+        $numargs = func_num_args();
+        $arg_list = func_get_args();
+        for ($i = 0; $i < $numargs; $i++) {
+            Dumper::xdump($arg_list[$i], null, Dumper::CALLER_FUNC);
+        }        
         return $var;
     }
 }
