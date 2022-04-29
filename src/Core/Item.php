@@ -13,7 +13,7 @@ namespace Szczyglis\ExtendedDumpBundle\Core;
 
 /**
  * Item
- * 
+ *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
  * @copyright 2022 Marcin Szczyglinski
@@ -62,6 +62,8 @@ class Item
      */
     private $function;
 
+    private $dump;
+
     /**
      * @return mixed
      */
@@ -75,7 +77,7 @@ class Item
      *
      * @return self
      */
-    public function setVar($var): self
+    public function setVar(&$var): self
     {
         $this->var = $var;
 
@@ -218,6 +220,26 @@ class Item
     public function setFunction(?string $function): self
     {
         $this->function = $function;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDump()
+    {
+        return $this->dump;
+    }
+
+    /**
+     * @param mixed $dump
+     *
+     * @return self
+     */
+    public function setDump($dump): self
+    {
+        $this->dump = $dump;
 
         return $this;
     }

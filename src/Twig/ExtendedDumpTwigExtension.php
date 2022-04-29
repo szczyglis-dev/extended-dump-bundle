@@ -17,7 +17,7 @@ use Szczyglis\ExtendedDumpBundle\Core\Dumper;
 
 /**
  * ExtendedDumpTwigExtension
- * 
+ *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
  * @copyright 2022 Marcin Szczyglinski
@@ -27,8 +27,6 @@ use Szczyglis\ExtendedDumpBundle\Core\Dumper;
 class ExtendedDumpTwigExtension extends AbstractExtension
 {
     /**
-     * @param $var
-     * @param null $label
      */
     public function xdump()
     {

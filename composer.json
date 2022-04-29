@@ -1,6 +1,6 @@
 {
     "name": "szczyglis/extended-dump-bundle",
-    "description": "Extension offering new debugging features for Symfony 4, 5 and 6 frameworks",
+    "description": "An extension that extends the debugging capabilities of Symfony 4, 5 and 6 frameworks.",
     "homepage": "https://github.com/szczyglis-dev/extended-dump-bundle",
     "type": "symfony-bundle",
     "license": "MIT",
@@ -35,6 +35,7 @@
     ],
     "require": {
         "php": "^7.2.5|^8.0",
+        "doctrine/orm": "^2.11",
         "symfony/config": "^4.4|^5.0|^6.0",
         "symfony/debug-bundle": "^4.4|^5.0|^6.0",
         "symfony/dependency-injection": "^4.4|^5.0|^6.0",

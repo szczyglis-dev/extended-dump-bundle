@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Output
- * 
+ *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
  * @copyright 2022 Marcin Szczyglinski
@@ -73,7 +73,7 @@ class Output
         if ($data === false) {
             return;
         }
-        
+
         $content = $response->getContent();
         if (strpos($content, '</body>') !== false) {
             $content = str_replace('</body>', $data . '</body>', $content);

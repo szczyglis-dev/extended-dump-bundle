@@ -13,9 +13,6 @@ use Szczyglis\ExtendedDumpBundle\Core\Dumper;
 
 if (!function_exists('xdump')) {
     /**
-     * @param $var
-     * @param string|null $label
-     * @return mixed
      */
     function xdump()
     {
@@ -23,6 +20,6 @@ if (!function_exists('xdump')) {
         $args = func_get_args();
         for ($i = 0; $i < $c; $i++) {
             Dumper::xdump($args[$i], null, Dumper::CALLER_FUNC);
-        }  
+        }
     }
 }

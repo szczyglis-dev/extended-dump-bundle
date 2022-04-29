@@ -85,6 +85,9 @@
     }
 
     function xdumpRegisterListeners{{ hash }}() {
+        document.getElementById("xdump-close-{{ hash }}").addEventListener("click", function () {
+            xdumpHide{{ hash }}()
+        });
         document.getElementById("xdump-trigger-{{ hash }}").addEventListener("click", function () {
             var container = document.getElementById("xdump-container-{{ hash }}");
             if (container.style.display == "block") {

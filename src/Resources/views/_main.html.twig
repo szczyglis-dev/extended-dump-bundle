@@ -1,7 +1,13 @@
 {% extends '@ExtendedDump/base.html.twig' %}
 
 {% block main %}
-    <div class="version-{{ hash }}"><span class="v-{{ hash }}">X</span>dump <span class="v-{{ hash }}" title="eXtended Dump v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }}, build: {{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION_BUILD') }}">v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }}</span> <a href="https://github.com/szczyglis-dev/extended-dump-bundle" target="_blank" title="go to GitHub project's page">github</a></div>
+    <div class="version-{{ hash }}">
+        <span class="v-{{ hash }}">X</span>dump <span class="v-{{ hash }}"
+                                                      title="eXtended Dump v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }} build: {{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION_BUILD') }}">v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }}</span>
+        <a href="https://github.com/szczyglis-dev/extended-dump-bundle" target="_blank"
+           title="Go to GitHub project page">github</a>
+        <span id="xdump-close-{{ hash }}" title="Close" class="close-icon-{{ hash }}">x</span>
+    </div>
     <div class="wrapper-{{ hash }}">
         {% for id, data in items %}
             {% if data|length > 0 %}
@@ -16,7 +22,7 @@
 {% endblock %}
 
 {% block javascript %}
-    {{ include('@ExtendedDump/_javascript.html.twig') }}
+{{ include('@ExtendedDump/_javascript.html.twig') }}
 {% endblock %}
 
 {% block css %}

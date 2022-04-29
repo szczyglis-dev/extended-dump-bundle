@@ -15,12 +15,15 @@ use Twig\Environment;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\Dumper\AbstractDumper;
 use Szczyglis\ExtendedDumpBundle\Event\MultiDumpEvents;
 use Szczyglis\ExtendedDumpBundle\Event\RenderEvent;
 
 /**
  * Generator
- * 
+ *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
  * @copyright 2022 Marcin Szczyglinski
@@ -47,7 +50,7 @@ class Generator
     /**
      * @var SystemDump
      */
-    private $system;
+    private $internalDumper;
 
     /**
      * @var array Configuration
@@ -60,26 +63,15 @@ class Generator
      * @param Environment $twig
      * @param KernelInterface $kernel
      * @param EventDispatcherInterface $dispatcher
-     * @param SystemDump $system
+     * @param InternalDumper $internalDumper
      */
-    public function __construct(array $config, Environment $twig, KernelInterface $kernel, EventDispatcherInterface $dispatcher, SystemDump $system)
+    public function __construct(array $config, Environment $twig, KernelInterface $kernel, EventDispatcherInterface $dispatcher, InternalDumper $internalDumper)
     {
         $this->config = $config;
         $this->twig = $twig;
         $this->kernel = $kernel;
         $this->dispatcher = $dispatcher;
-        $this->system = $system;
-    }
-
-    public function dispatchEvent()
-    {
-        $event = new RenderEvent;
-        $this->dispatcher->dispatch($event, RenderEvent::NAME);
-
-        $data = $event->getData();
-        foreach ($data as $item) {
-            Dumper::xdump($item['var'], $item['label'], Dumper::CALLER_EVENT);
-        }
+        $this->internalDumper = $internalDumper;
     }
 
     /**
@@ -104,17 +96,49 @@ class Generator
             return false;
         }
 
-        $this->system->dump($event);
+        $display = [];
+        $display['app'] = true;
+        $display['event'] = true;
+        $display['system'] = true;
 
-        $this->dispatchEvent();
+        if (isset($this->config['display']['sections'])
+            && is_array($this->config['display']['sections'])) {
+            $cfg = $this->config['display']['sections'];
+            foreach ($display as $k => $value) {
+                if (isset($cfg[$k]['enabled']) && $cfg[$k]['enabled'] !== true) {
+                    $display[$k] = false;
+                }
+            }
+        }
+
+        if (!$display['app'] && !$display['system'] && !$display['event']) {
+            return false;
+        }
+        if ($display['system']) {
+            $this->internalDumper->dump($this->config, $event);
+        }
+        if ($display['event']) {
+            $this->dispatchEvent();
+        }
 
         $items = [
             'app' => [],
             'event' => [],
             'system' => [],
         ];
+
+        $options = [
+            'max_items' => -1,
+            'max_depth' => 1,
+            'max_string_depth' => 160,
+        ];
+
         $vars = Registry::all();
-        $count = Registry::count();        
+        $count = Registry::count();
+
+        $dumper = new HtmlDumper();
+        $cloner = new VarCloner();
+        $cloner->setMaxItems($options['max_items']);
 
         foreach ($vars as $item) {
             $key = Dumper::KEY_APP;
@@ -127,11 +151,15 @@ class Generator
                     break;
             }
 
-            if (isset($this->config['display']['sections'][$key]['enabled']) 
-                && $this->config['display']['sections'][$key]['enabled'] === false) {
-                    continue;
+            if (array_key_exists($key, $display) && $display[$key] === false) {
+                continue;
             }
-            
+
+            $item->setDump($dumper->dump($cloner->cloneVar($item->getVar()), true, [
+                'maxDepth' => $options['max_depth'],
+                'maxStringLength' => $options['max_string_depth'],
+            ]));
+
             $items[$key][] = $item;
         }
 
@@ -143,5 +171,16 @@ class Generator
             'count' => $count,
             'config' => $this->config,
         ]);
+    }
+
+    public function dispatchEvent()
+    {
+        $event = new RenderEvent;
+        $this->dispatcher->dispatch($event, RenderEvent::NAME);
+
+        $data = $event->getData();
+        foreach ($data as $item) {
+            Dumper::xdump($item['var'], $item['label'], Dumper::CALLER_EVENT);
+        }
     }
 }

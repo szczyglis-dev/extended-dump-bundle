@@ -33,7 +33,7 @@
     }
 
     #xdump-container-{{ hash }} .version-{{ hash }},
-    #xdump-container-{{ hash }} .version-{{ hash }} a  {
+    #xdump-container-{{ hash }} .version-{{ hash }} a {
         text-align: right;
         font-family: "Lucida Console", Monaco, monospace !important;
         font-size: 0.55rem;
@@ -42,6 +42,22 @@
 
     #xdump-container-{{ hash }} .version-{{ hash }} .v-{{ hash }} {
         color: silver;
+    }
+
+    #xdump-container-{{ hash }} .version-{{ hash }} .close-icon-{{ hash }} {
+        background: #2e2e2e;
+        padding-left: 4px;
+        padding-right: 4px;
+        color: #727272;
+        font-weight: bold;
+        margin-left: 20px;
+        font-size: 1rem;
+    }
+
+    #xdump-container-{{ hash }} .version-{{ hash }} .close-icon-{{ hash }}:hover {
+        background: #4c4c4c;
+        color: #9bc070;
+        cursor: pointer;
     }
 
     #xdump-container-{{ hash }} .wrapper-{{ hash }} .col-{{ hash }} {

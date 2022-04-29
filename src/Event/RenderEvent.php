@@ -15,7 +15,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * RenderEvent
- * 
+ *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
  * @copyright 2022 Marcin Szczyglinski

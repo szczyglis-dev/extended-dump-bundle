@@ -19,5 +19,5 @@
 {% endblock %}
 
 {% block dump %}
-    {{ dump(item.var) }}
+    {{ item.dump|raw }}
 {% endblock %}

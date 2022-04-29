@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Szczyglis\ExtendedDumpBundle;
+namespace Szczyglis\ExtendedDumpBundle\Contracts;
 
-use \Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 /**
- * ExtendedDumpBundle
+ * SystemDump
  *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
@@ -22,8 +22,18 @@ use \Symfony\Component\HttpKernel\Bundle\Bundle;
  * @license   http://www.opensource.org/licenses/MIT The MIT License
  * @link https://github.com/szczyglis-dev/extended-dump-bundle
  */
-class ExtendedDumpBundle extends Bundle
+interface InternalDumperInterface
 {
-    public const VERSION = '1.1.0';
-    public const VERSION_BUILD = '2022-04-29';
+    /**
+     * @param array $config
+     * @param ResponseEvent $event
+     * @return mixed
+     */
+    public function init(array $config, ResponseEvent $event);
+
+    /**
+     * @param int $type
+     * @return array
+     */
+    public function dump(int $type = 0): array;
 }
