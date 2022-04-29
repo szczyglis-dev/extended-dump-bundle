@@ -32,10 +32,10 @@ class ExtendedDumpTwigExtension extends AbstractExtension
      */
     public function xdump()
     {
-        $numargs = func_num_args();
-        $arg_list = func_get_args();
-        for ($i = 0; $i < $numargs; $i++) {
-            Dumper::xdump($arg_list[$i], null, Dumper::CALLER_TWIG);
+        $c = func_num_args();
+        $args = func_get_args();
+        for ($i = 0; $i < $c; $i++) {
+            Dumper::xdump($args[$i], null, Dumper::CALLER_TWIG);
         }
     }
 

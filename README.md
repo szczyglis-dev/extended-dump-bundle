@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.26** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.0.27** build 2022-04-29
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -37,7 +37,7 @@ The debug window is divided into 3 sections:
 
 ## The new `xdump` global function
 
-The extension adds a new global function to the framework's: `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged variables fly collectively to the **eXtended Dump** window. Example of use:
+The extension adds a new global function to the framework's: `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged objects fly collectively to the **eXtended Dump** window. Example of use:
 
 ```php
 $foo1 = 'bar1';
@@ -47,7 +47,7 @@ $foo3 = 'bar3';
 xdump($foo1, $foo2, $foo3);
 ```
 
-The above code added anywhere in the application will add the "app" section to the debugger and display the debug variable (or many variables) there. Example:
+The above code added anywhere in the application will add the "app" section to the debugger and display the dumped object (or many objects) there. Example:
 
 ```php
 <?php
@@ -100,7 +100,7 @@ To use in a template, just use the `xdump` function inside twig template:
 {% set foo2 = "bar2" %}
 {% set foo3 = "bar3" %}
 
-{{ xdump(foo1, foo2, foo3, [...]) }} # you can put multiple arguments also in Twig
+{{ xdump(foo1, foo2, foo3) }} # you can put multiple arguments also in Twig
 ```
 
 *The "label" parameter is optional.*
@@ -202,7 +202,7 @@ ___
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-**- 1.0.26** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
+**- 1.0.27** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 # Credits
  
