@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.32** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.0.33** build 2022-04-29
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -200,11 +200,7 @@ ___
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-<<<<<<< HEAD
-**- 1.0.32** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
-=======
-**- 1.0.30** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
->>>>>>> 8cfffb881464f482d3ee2ecee6a3eab903ed98ce
+**- 1.0.33** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 # Credits
  
