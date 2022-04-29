@@ -1,10 +1,10 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.33** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.0.34** build 2022-04-29
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
 # eXtended Dump Bundle
 
-**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework's `dump` function with new features. It attaches a new dockable window to the application with the debug collected by all dumps made by the new way. In one place you can get quick access to dumped variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
+**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework `dump` function with new features. It attaches a new dockable window to the application with the debug collected by all dumps made by the new way. In one place you can get quick access to dumped variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
 
 ## How to install:
 ```
@@ -12,11 +12,11 @@ composer require szczyglis/extended-dump-bundle
 ```
 ## Features:
 
-- a new, configurable window containing grouped debugged variables
+- a new, configurable window containing grouped dumped variables
 - new global function named `xdump`, for quick debugging
-- all debugged variables in one place
+- all dumped variables in one place
 - displaying many useful information, such as debug of the current user, the RequestStack object, POST array, cookies and server variables
-- the ability to expand with symfony events system.
+- the ability to extend with symfony events.
 
 
 ## How it works:
@@ -200,7 +200,7 @@ ___
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-**- 1.0.33** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
+**- 1.0.34** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 # Credits
  
