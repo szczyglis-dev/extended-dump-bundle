@@ -1,0 +1,32 @@
+# config/packages/extended_dump.yaml
+# 
+extended_dump:
+  env: [dev] # Array with enabled environments, if empty then only DEV environment will be enabled
+
+  display:
+    enabled: true # Enable/disable Xdump dockable window
+    dump:
+        max_depth: 1 # Var Dumper max depth config value
+        max_string_depth: 160 # Var Dumper max max string depth config value
+        max_items: -1 # Var Cloner max items config value
+    sections:
+      app: 
+        enabled: true # Enable/disable App section
+        collapsed: false # Collapse App section at start
+      event: 
+        enabled: true # Enable/disable Event section
+        collapsed: false # Collapse Event section at start
+      system: 
+        enabled: true # Enable/disable System section
+        collapsed: false # Collapse System section at start
+        items:
+            request: true # Enable/disable Request dump
+            response: true # Enable/disable Response dump
+            session: true # Enable/disable Session dump
+            get: true # Enable/disable $_GET dump
+            post: true # Enable/disable $_POST dump
+            cookies: true # Enable/disable Cookies dump
+            user: true # Enable/disable User dump
+            server: true # Enable/disable Server dump
+            doctrine: true # Enable/disable Doctrine dump
+            parameters: true # Enable/disable Parameters dump

@@ -1,10 +1,10 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.33** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.1.0** build 2022-04-29
 
-## Supported Symfony versions: **4.4**, **5.x**, **6.x**
+## Supported versions of Symfony: **4.4+**, **5.x**, **6.x**
 
 # eXtended Dump Bundle
 
-**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework's `dump` function with new features. It attaches a new dockable window to the application with the debug collected by all dumps made by the new way. In one place you can get quick access to dumped variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
+**eXtended Dump Bundle is an extension to the Symfony framework. It extends the excellent framework `dump` function with new features. It attaches a new dockable window to the application with the debug collected by all dumps made by the new way. In one place you can get quick access to dumped objects and variables and information related to the system. Bundle provides a new global function `xdump` so that you can use eXtended Dump anywhere in your application code.**
 
 ## How to install:
 ```
@@ -12,11 +12,12 @@ composer require szczyglis/extended-dump-bundle
 ```
 ## Features:
 
-- a new, configurable window containing grouped debugged variables
-- new global function named `xdump`, for quick debugging
-- all debugged variables in one place
-- displaying many useful information, such as debug of the current user, the RequestStack object, POST array, cookies and server variables
-- the ability to expand with symfony events system.
+- new, configurable window containing grouped dumped objects
+- new global function: `xdump`, for quick debugging
+- all dumped objects grouped in one handy place
+- displaying in one handy place many useful information, such as debug of the current user, the request and response objects, variables from $_GET, $_POST, $_SESSION, $_COOKIE, $_ENV and $_SERVER arrays, information about PHP and modules, Doctrine entities and repositories with properties and methods list, parameters list and more
+- ability to extend with Events.
+- customizable layout (Twig)
 
 
 ## How it works:
@@ -33,21 +34,34 @@ The debug window is divided into 3 sections:
 - **event** - the event section displays the debug added using your own Event Subscriber,
 - **system** - displays handy, most useful system information.
 
-![debug](https://user-images.githubusercontent.com/61396542/165871308-8b86285f-0294-4c5a-9eb9-11fab12fa384.png)
+![divide](https://user-images.githubusercontent.com/61396542/165999714-e3a2d4d5-c315-42c0-a1f7-2e4154c66b87.png)
 
 ## The new `xdump` global function
 
-The extension adds a new global function to the framework's: `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged objects fly collectively to the **eXtended Dump** window. Example of use:
+The extension adds to framework a new global function called `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged objects fly collectively to the **eXtended Dump** window. 
+
+*Example of use:*
 
 ```php
-$foo1 = 'bar1';
-$foo2 = 'bar2';
-$foo3 = 'bar3';
+/**
+     * @Route("/", name="index")
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $foo1 = 'bar1';
+        $foo2 = 'bar2';
+        $foo3 = 'bar3';
 
-xdump($foo1, $foo2, $foo3);
+        xdump($foo1, $foo2, $foo3);
+
+        return $this->render('index.html.twig');
+    }
 ```
+The above code added anywhere in the application (both in controllers and in services) will add the "app" section to the debugger and display the dumped object (or objects) there. 
 
-The above code added anywhere in the application will add the "app" section to the debugger and display the dumped object (or many objects) there. Example:
+*Example of use:*
 
 ```php
 <?php
@@ -86,7 +100,7 @@ class IndexController extends AbstractController
 
 Result of the action:
 
-![result](https://user-images.githubusercontent.com/61396542/165867858-ef8a021a-f2dc-4c77-9695-64458e826fb3.png)
+![vars](https://user-images.githubusercontent.com/61396542/165999781-8bb3c81e-95bb-4736-bbe8-82f74da1c1ea.png)
 
 ## Extension for Twig
 
@@ -96,12 +110,14 @@ To use in a template, just use the `xdump` function inside twig template:
 ```twig
 # templates/template.html.twig
 
-{% set foo1 = "bar1" %}
-{% set foo2 = "bar2" %}
-{% set foo3 = "bar3" %}
+{% set foo = "I'm in Twig!" %}
+{% set bar = "I'm in Twig too!" %}
 
-{{ xdump(foo1, foo2, foo3) }} # you can dump multiple objects at once also in Twig
+{{ xdump(foo, bar) }} # you can dump multiple objects at once also in Twig
 ```
+Result of the action:
+
+![twig](https://user-images.githubusercontent.com/61396542/165999368-7a1d6b07-36a3-474a-9a34-881de51b3941.png)
 
 ## Extending eXtended Dump with EventSubscriber or EventListener
 
@@ -126,9 +142,9 @@ class CustomDumpSubscriber implements EventSubscriberInterface
      */
     public function onRender(RenderEvent $event)
     {  
-        $var = 'some variable that will be dumped every time';
+        $foo = "I want to be dumped every time!";
 
-        $event->add($var, 'My event variable');
+        $event->add($foo, "I'm Event object");
     }
 
     /**
@@ -145,62 +161,129 @@ class CustomDumpSubscriber implements EventSubscriberInterface
 
 The above will add a new section to the debugger window with the following elements added:
 
-![event](https://user-images.githubusercontent.com/61396542/165001856-e240743d-c432-4e2f-932e-1d663c4d15a7.png)
+![event](https://user-images.githubusercontent.com/61396542/165999873-10bf5c04-afaf-4e5b-913e-d95e6ff0d41e.png)
 
 You can add multiple items:
 
 ```php
-$foo1 = "bar1";
-$foo2 = "bar2";
+class CustomDumpSubscriber implements EventSubscriberInterface
+{
+    /**
+     * @param RenderEvent $event
+     */
+    public function onRender(RenderEvent $event)
+    {  
+        $foo1 = "bar1";
+        $foo2 = "bar2";
 
-$event->add($foo1, "optional label");
-$event->add($foo2);
+        $event->add($foo1, "Optional label to display");
+        $event->add($foo2);
+    }   
+
 ```
+
+## Customizing eXtended Dump
+
+You can fully customize window appearance, CSS and JS by overriding templates from `./src/Resources/views` in your own templates directory.
+
+# Built-in system components
+
+### Request / Response component
+This section displays the current Request and Response objects.
+
+![sys_request](https://user-images.githubusercontent.com/61396542/166000766-94cb1d4b-0f59-4d37-b495-198786cefc5d.png)
+
+### Doctrine component
+This section displays a list of all entities used in the application, along with the names and types of defined fields, methods from the class of the given Entity, as well as methods available in the repositories:
+
+![sys_doctrine](https://user-images.githubusercontent.com/61396542/166000823-f7f7d8ca-0230-4127-8e45-cc280867d3fb.png)
+
+### Request variables component
+This section displays the contents of the variables $_GET, $_POST, $_SESSION and $_COOKIE:
+
+![sys_vars](https://user-images.githubusercontent.com/61396542/166000783-64b2fecf-10c9-4c52-8648-4eeb58714422.png)
+
+### User component
+This section displays the object with the currently logged in user:
+
+![sys_user](https://user-images.githubusercontent.com/61396542/166001242-ada036df-2883-4220-86a1-1055f5bb0db8.png)
+
+### Server component
+Useful information about the server is displayed in this section, such as the PHP version, the versions of the loaded modules, and the contents of the $_ENV and $_SERVER variables:
+
+![sys_server](https://user-images.githubusercontent.com/61396542/166000868-720e2e12-78ce-41cd-865f-3de887f8e74c.png)
+
+### Parameters component
+This section displays the values of all parameters defined in the application:
+
+![sys_params](https://user-images.githubusercontent.com/61396542/166000876-b0090b91-db6d-4fdd-99a7-19ce069445a0.png)
 
 ## Configuration
 
-In `config/packages/extended_dump.yaml`, you can create a configuration and change the way sections are displayed. The default appearance of `extended_dump.yaml`:
+In `config/packages/extended_dump.yaml`, you can create a configuration and change the way sections are displayed. 
+
+The default appearance of `extended_dump.yaml`:
 
 ```yaml
 # config/packages/extended_dump.yaml
 extended_dump:
-  env: [dev] # an array with the names of the environments in which the add-on will be active, if not given - only the DEV environment will use the add-on
+  env: [dev] # Array with enabled environments, if empty then only DEV environment will be enabled
 
   display:
-    enabled: true # enables/disables debugger window
+    enabled: true # Enable/disable Xdump dockable window
+    dump:
+        max_depth: 1 # Var Dumper max depth config value
+        max_string_depth: 160 # Var Dumper max max string depth config value
+        max_items: -1 # Var Cloner max items config value
     sections:
       app: 
-        enabled: true # enables/disables "app" section
-        collapsed: false # collapses "app" section at start
+        enabled: true # Enable/disable App section
+        collapsed: false # Collapse App section at start
       event: 
-        enabled: true # enables/disables "event" section
-        collapsed: false # collapses "event" section at start
+        enabled: true # Enable/disable Event section
+        collapsed: false # Collapse Event section at start
       system: 
-        enabled: true # enables/disables "system" section
-        collapsed: false # collapses "system" section at start
+        enabled: true # Enable/disable System section
+        collapsed: false # Collapse System section at start
+        items:
+            request: true # Enable/disable Request dump
+            response: true # Enable/disable Response dump
+            session: true # Enable/disable Session dump
+            get: true # Enable/disable $_GET dump
+            post: true # Enable/disable $_POST dump
+            cookies: true # Enable/disable Cookies dump
+            user: true # Enable/disable User dump
+            server: true # Enable/disable Server dump
+            doctrine: true # Enable/disable Doctrine dump
+            parameters: true # Enable/disable Parameters dump
 ```
+
+Example config template is included in package: `./src/Resources/config/extended_dump.yaml`.
 ___
 
-## Bundle works with followed Symfony versions:
+## Bundle works with followed versions of Symfony framework:
 
 
-**Symfony 4.4:**
+**Symfony 4.4+:**
 
-![symfony4](https://user-images.githubusercontent.com/61396542/165001864-88122f53-8364-4820-9cd2-a237a072d5bd.png)
+![symfony4](https://user-images.githubusercontent.com/61396542/165999915-73a6a22c-d607-421e-975f-03286711a8fc.png)
 
 **Symfony 5.x:**
 
-![symfony5](https://user-images.githubusercontent.com/61396542/165001872-3f9f3822-7997-411b-b294-6e3d1016d112.png)
+![symfony5](https://user-images.githubusercontent.com/61396542/165999929-dff734a5-8a38-4fcf-a0d1-bb6b3e207f03.png)
 
 **Symfony 6.x:**
 
-![symfony6](https://user-images.githubusercontent.com/61396542/165001873-71412895-4f28-4ec3-b410-44358fef9fbb.png)
+![symfony6](https://user-images.githubusercontent.com/61396542/165999958-9361c6d9-fbe4-4460-981f-12c2ebb1f514.png)
+
 ___
 
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-**- 1.0.33** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
+**- 1.0.36** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
+
+**- 1.1.0** - Added doctrine entities and repositories debugger, added parameters dumper, increased configuration options and added some other small improvements (2022-04-29)
 
 # Credits
  
@@ -221,6 +304,3 @@ https://github.com/szczyglis-dev/extended-dump-bundle
 https://szczyglis.dev
 
 Contact: szczyglis@protonmail.com
-
-
-
