@@ -16,7 +16,7 @@ composer require szczyglis/extended-dump-bundle
 - new global function: `xdump`, for quick debugging
 - all dumped objects grouped in one handy place
 - displaying in one handy place many useful information, such as debug of the current user, the request and response objects, variables from $_GET, $_POST, $_SESSION, $_COOKIE, $_ENV and $_SERVER arrays, information about PHP and modules, Doctrine entities and repositories with properties and methods list, parameters list and more
-- ability to extend with Events.
+- ability to extend with Events
 - customizable layout (Twig)
 
 
