@@ -73,10 +73,6 @@ class Dumper
             $caller = self::CALLER_STATIC;
         }
 
-        if (is_object($var)) {
-            $var = clone $var;
-        }
-
         $item = new Item;
         $item->setVar($var);
         $item->setLabel($label);
