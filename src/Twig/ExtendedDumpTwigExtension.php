@@ -27,8 +27,7 @@ use Szczyglis\ExtendedDumpBundle\Core\Dumper;
 class ExtendedDumpTwigExtension extends AbstractExtension
 {
     /**
-     * @param $var
-     * @param null $label
+     * @param $args[]
      */
     public function xdump()
     {
