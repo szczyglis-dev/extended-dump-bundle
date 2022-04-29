@@ -79,6 +79,22 @@ class DoctrineDumper implements InternalDumperInterface
      */
     public function prepareEntities()
     {
+        $hiddenMethods = [
+            '__call',
+            '__construct',
+            'clear',
+            'count',
+            'getClassMetadata',
+            'getClassName',
+            'getEntityManager',
+            'getEntityName',
+            'matching',
+            'createNamedQuery',
+            'createNativeNamedQuery',
+            'createQueryBuilder',
+            'createResultSetMappingBuilder',
+        ];
+
         $entities = [];
         $c = 0;
         $meta = $this->em->getMetadataFactory()->getAllMetadata();
@@ -129,7 +145,10 @@ class DoctrineDumper implements InternalDumperInterface
                     $repositoryMethods = [];
                     $list = $reflector->getMethods();
                     foreach ($list as $entry) {
-                        $repositoryMethods[] = $entry->getName();
+                        $methName = $entry->getName();
+                        if (!in_array($methName, $hiddenMethods)) {
+                            $repositoryMethods[] = $entry->getName();
+                        }                        
                     }
                     sort($repositoryMethods);
                 }
