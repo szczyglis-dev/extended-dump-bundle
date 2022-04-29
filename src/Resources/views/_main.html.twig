@@ -1,7 +1,7 @@
 {% extends '@ExtendedDump/base.html.twig' %}
 
 {% block main %}
-    <div class="version-{{ hash }}"><span class="v-{{ hash }}">X</span>dump <span class="v-{{ hash }}" title="eXtended Dump v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }}, build: {{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION_BUILD') }}">v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }}</span> <a href="https://github.com/szczyglis-dev/extended-dump-bundle" target="_blank" title="go to GitHub project's page">github</a></div>
+    <div class="version-{{ hash }}"><span class="v-{{ hash }}">X</span>dump <span class="v-{{ hash }}" title="eXtended Dump v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }}, build: {{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION_BUILD') }}">v{{ constant('Szczyglis\\ExtendedDumpBundle\\ExtendedDumpBundle::VERSION') }}</span> <a href="https://github.com/szczyglis-dev/extended-dump-bundle" target="_blank" title="Go to GitHub project page">github</a></div>
     <div class="wrapper-{{ hash }}">
         {% for id, data in items %}
             {% if data|length > 0 %}
