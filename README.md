@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.0.27** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.0.28** build 2022-04-29
 
 ## Supported Symfony versions: **4.4**, **5.x**, **6.x**
 
@@ -100,10 +100,8 @@ To use in a template, just use the `xdump` function inside twig template:
 {% set foo2 = "bar2" %}
 {% set foo3 = "bar3" %}
 
-{{ xdump(foo1, foo2, foo3) }} # you can put multiple arguments also in Twig
+{{ xdump(foo1, foo2, foo3) }} # you can dump multiple objects at once also in Twig
 ```
-
-*The "label" parameter is optional.*
 
 ## Extending eXtended Dump with EventSubscriber or EventListener
 
@@ -202,7 +200,7 @@ ___
 # Changelog
 **- 1.0.13** - Published first release. (2022-04-25)
 
-**- 1.0.27** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
+**- 1.0.28** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 # Credits
  
