@@ -33,7 +33,7 @@ The debug window is divided into 3 sections:
 - **event** - the event section displays the debug added using your own Event Subscriber,
 - **system** - displays handy, most useful system information.
 
-![demo](https://user-images.githubusercontent.com/61396542/165868045-66952666-2c08-4d59-a790-9f4ddd225f1f.png)
+![debug](https://user-images.githubusercontent.com/61396542/165871308-8b86285f-0294-4c5a-9eb9-11fab12fa384.png)
 
 ## The new `xdump` global function
 
