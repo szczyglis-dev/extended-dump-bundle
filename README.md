@@ -34,6 +34,7 @@ The debug window is divided into 3 sections:
 - **system** - displays handy, most useful system information.
 
 ![debug](https://user-images.githubusercontent.com/61396542/165871308-8b86285f-0294-4c5a-9eb9-11fab12fa384.png)
+*\*screenshot from newest version - v1.0.35*
 
 ## The new `xdump` global function
 
