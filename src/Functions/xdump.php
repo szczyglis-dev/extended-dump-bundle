@@ -23,7 +23,6 @@ if (!function_exists('xdump')) {
         $arg_list = func_get_args();
         for ($i = 0; $i < $numargs; $i++) {
             Dumper::xdump($arg_list[$i], null, Dumper::CALLER_FUNC);
-        }        
-        return $var;
+        }  
     }
 }
