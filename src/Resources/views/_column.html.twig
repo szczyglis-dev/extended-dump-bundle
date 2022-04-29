@@ -7,8 +7,12 @@
 
 <div class="col-{{ hash }}">
     {% block header %}
+        {% set counter_class = '' %}
+        {% if data|length > 0 and id == 'app' %}
+            {% set counter_class = 'h-' ~ hash %}
+        {% endif %}
         <div class="header-{{ hash }} xdump-collapse-{{ hash }}" data-id="{{ id }}">
-            {{ id }} <span class="c-{{ hash }}">({{ data|length }})</span> <span class="icon-{{ hash }}">{{ icon }}</span>
+            {{ id }} <span class="c-{{ hash }}">(<span class="{{ counter_class }}">{{ data|length }}</span>)</span> <span class="icon-{{ hash }}">{{ icon }}</span>
         </div>
     {% endblock %}
     {% block items %}
