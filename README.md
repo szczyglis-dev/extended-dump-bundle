@@ -190,7 +190,7 @@ You can fully customize window appearance, CSS and JS by overriding templates fr
 # Built-in system components
 
 ### Request / Response component
-This section displays the current Request and Response objects.
+This section displays the current Request and Response objects:
 
 ![sys_request](https://user-images.githubusercontent.com/61396542/166000766-94cb1d4b-0f59-4d37-b495-198786cefc5d.png)
 
