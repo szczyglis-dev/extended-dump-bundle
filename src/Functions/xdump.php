@@ -13,9 +13,7 @@ use Szczyglis\ExtendedDumpBundle\Core\Dumper;
 
 if (!function_exists('xdump')) {
     /**
-     * @param $var
-     * @param string|null $label
-     * @return mixed
+     * @param $args[]
      */
     function xdump()
     {
