@@ -37,7 +37,7 @@ The debug window is divided into 3 sections:
 
 ## The new `xdump` global function
 
-The extension adds a new global function to the framework's: `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged objects fly collectively to the **eXtended Dump** window. Example of use:
+The extension adds to framework a new global function called `xdump`. Thanks to it, you can use **eXtended Dump** from anywhere in the code. It works similar to the standard `dump` function, except that debugged objects fly collectively to the **eXtended Dump** window. Example of use:
 
 ```php
 $foo1 = 'bar1';
