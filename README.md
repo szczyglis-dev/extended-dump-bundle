@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.1.2** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.1.3** build 2022-04-29
 
 ## Supported versions of Symfony: **4.4+**, **5.x**, **6.x**
 
@@ -15,7 +15,7 @@ composer require szczyglis/extended-dump-bundle
 - new, configurable window containing grouped dumped objects
 - new global function: `xdump`, for quick debugging
 - all dumped objects grouped in one handy place
-- displaying in one handy place many useful information, such as debug of the current user, the request and response objects, variables from $_GET, $_POST, $_SESSION, $_COOKIE, $_ENV and $_SERVER arrays, information about PHP and modules, Doctrine entities and repositories with properties and methods list, parameters list and more
+- displaying in one handy place many useful information, such as debug of the current user, the request and response objects, variables from $_GET, $_POST, $_SESSION, $_COOKIE, $_ENV and $_SERVER, information about PHP and modules, Doctrine entities and repositories with properties and methods list, parameters list and more
 - ability to extend with Events
 - customizable layout (Twig)
 - fully configurable
@@ -200,7 +200,7 @@ This section displays a list of all entities used in the application, along with
 ![sys_doctrine](https://user-images.githubusercontent.com/61396542/166000823-f7f7d8ca-0230-4127-8e45-cc280867d3fb.png)
 
 ### Request variables component
-This section displays the contents of the variables $_GET, $_POST, $_SESSION and $_COOKIE:
+This section displays the contents of $_GET, $_POST, $_SESSION and $_COOKIE:
 
 ![sys_vars](https://user-images.githubusercontent.com/61396542/166000783-64b2fecf-10c9-4c52-8648-4eeb58714422.png)
 
@@ -210,7 +210,7 @@ This section displays the object with the currently logged in user:
 ![sys_user](https://user-images.githubusercontent.com/61396542/166001242-ada036df-2883-4220-86a1-1055f5bb0db8.png)
 
 ### Server component
-Useful information about the server is displayed in this section, such as the PHP version, the versions of the loaded modules, and the contents of the $_ENV and $_SERVER variables:
+Useful information about the server is displayed in this section, such as the PHP version, the versions of the loaded modules, and the contents of $_ENV and $_SERVER:
 
 ![sys_server](https://user-images.githubusercontent.com/61396542/166000868-720e2e12-78ce-41cd-865f-3de887f8e74c.png)
 
@@ -284,7 +284,7 @@ ___
 
 **- 1.0.36** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
-**- 1.1.2** - Added doctrine entities and repositories debugger, added parameters dumper, increased configuration options and added some other small improvements (2022-04-29)
+**- 1.1.3** - Added doctrine entities and repositories debugger, added parameters dumper, increased configuration options and added some other small improvements (2022-04-29)
 
 # Credits
  
