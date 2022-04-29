@@ -100,10 +100,8 @@ To use in a template, just use the `xdump` function inside twig template:
 {% set foo2 = "bar2" %}
 {% set foo3 = "bar3" %}
 
-{{ xdump(foo1, foo2, foo3) }} # you can put multiple arguments also in Twig
+{{ xdump(foo1, foo2, foo3) }} # you can dump multiple objects at once also in Twig
 ```
-
-*The "label" parameter is optional.*
 
 ## Extending eXtended Dump with EventSubscriber or EventListener
 
