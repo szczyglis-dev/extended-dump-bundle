@@ -48,7 +48,9 @@ class Output
 
     /**
      * @param ResponseEvent $event
-     * @throws \ReflectionException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function handle(ResponseEvent $event)
     {

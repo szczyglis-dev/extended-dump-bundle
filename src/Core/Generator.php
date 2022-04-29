@@ -17,7 +17,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
-use Symfony\Component\VarDumper\Dumper\AbstractDumper;
 use Szczyglis\ExtendedDumpBundle\Event\MultiDumpEvents;
 use Szczyglis\ExtendedDumpBundle\Event\RenderEvent;
 
@@ -65,7 +64,11 @@ class Generator
      * @param EventDispatcherInterface $dispatcher
      * @param InternalDumper $internalDumper
      */
-    public function __construct(array $config, Environment $twig, KernelInterface $kernel, EventDispatcherInterface $dispatcher, InternalDumper $internalDumper)
+    public function __construct(array $config,
+                                Environment $twig,
+                                KernelInterface $kernel,
+                                EventDispatcherInterface $dispatcher,
+                                InternalDumper $internalDumper)
     {
         $this->config = $config;
         $this->twig = $twig;
@@ -77,7 +80,9 @@ class Generator
     /**
      * @param ResponseEvent $event
      * @return string Rendered output
-     * @throws \ReflectionException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function generate(ResponseEvent $event)
     {
