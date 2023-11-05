@@ -137,14 +137,21 @@ class RequestDumper implements InternalDumperInterface
     {
         $result = [];
 
-        // Symfony 5.4+
-        if (method_exists($this->requestStack, 'getSession')) {
-            $data = $this->requestStack->getSession();
-            $k = $data->count() . ' ' . self::LABEL_ITEMS;
-            $result = [
-                $k => $data->all(),
-            ];
-        }
+        try {
+            // Symfony 5.4+
+            if (method_exists($this->requestStack, 'getSession')) {
+                $data = $this->requestStack->getSession();
+                if (!is_null($data)) {
+                    $k = $data->count() . ' ' . self::LABEL_ITEMS;
+                    $result = [
+                        $k => $data->all(),
+                    ];
+                }
+            }
+        } catch (\Throwable $e) {
+            //
+        } 
+        
         return $result;
     }
 

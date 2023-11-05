@@ -1,4 +1,4 @@
-<script>
+<script nonce="{{ nonce_js }}">
     function xdumpSetSessionStorage{{ hash }}(key, val) {
         if (typeof (sessionStorage) != 'undefined') {
             sessionStorage.setItem(key, val);

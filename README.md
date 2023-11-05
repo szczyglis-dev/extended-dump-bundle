@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.1.8** build 2022-04-29
+PHP: **7.2.5+, 8.0+**, current release: **1.2.0** build 2023-11-05
 
 ## Supported versions of Symfony: **4.4+**, **5.x**, **6.x**
 
@@ -285,6 +285,8 @@ ___
 **- 1.0.36** - Added support for multiple arguments in xdump(), user debug moved to bottom of the debugger window, added version info, added dumped items counters and some more features (2022-04-29)
 
 **- 1.1.8** - Added doctrine entities and repositories debugger, added parameters dumper, increased configuration options and added some other small improvements (2022-04-29)
+
+**- 1.2.0** - Added session exist check, added Content Security Policy nonce append (2023-11-05)
 
 # Credits
  

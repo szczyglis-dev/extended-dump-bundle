@@ -116,6 +116,13 @@ class Generator
             }
         }
 
+        // Get Symfony Profiler nonce
+        $request = $event->getRequest();
+        $headers = $request->headers->all();
+
+        $nonceJs = $request->headers->get('x-symfonyprofiler-script-nonce');
+        $nonceCss = $request->headers->get('x-symfonyprofiler-style-nonce');
+
         if (!$display['app'] && !$display['system'] && !$display['event']) {
             return false;
         }
@@ -140,7 +147,6 @@ class Generator
 
         $vars = Registry::all();
         $count = Registry::count();
-
         $dumper = new HtmlDumper();
         $cloner = new VarCloner();
         $cloner->setMaxItems($options['max_items']);
@@ -160,10 +166,12 @@ class Generator
                 continue;
             }
 
-            $item->setDump($dumper->dump($cloner->cloneVar($item->getVar()), true, [
+            $html = $dumper->dump($cloner->cloneVar($item->getVar()), true, [
                 'maxDepth' => $options['max_depth'],
                 'maxStringLength' => $options['max_string_depth'],
-            ]));
+            ]);
+
+            $item->setDump(preg_replace('/<script>/', '<script nonce="'.$nonceJs.'">', $html)); // append CSP nonce
 
             $items[$key][] = $item;
         }
@@ -175,6 +183,8 @@ class Generator
             'hash' => $hash,
             'count' => $count,
             'config' => $this->config,
+            'nonce_js' => $nonceJs,
+            'nonce_css' => $nonceCss,
         ]);
     }
 
