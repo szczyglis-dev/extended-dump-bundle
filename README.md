@@ -1,4 +1,4 @@
-PHP: **7.2.5+, 8.0+**, current release: **1.2.0** build 2023-11-05
+PHP: **7.2.5+, 8.0+**, current release: **1.2.1** build 2023-11-16
 
 ## Supported versions of Symfony: **4.4+**, **5.x**, **6.x**
 
@@ -287,6 +287,8 @@ ___
 **- 1.1.8** - Added doctrine entities and repositories debugger, added parameters dumper, increased configuration options and added some other small improvements (2022-04-29)
 
 **- 1.2.0** - Added session exist check, added Content Security Policy nonce append (2023-11-05)
+
+**- 1.2.1** - added style nonce append (2023-11-21)
 
 # Credits
  

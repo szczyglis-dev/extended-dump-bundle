@@ -25,7 +25,7 @@ use Szczyglis\ExtendedDumpBundle\Event\RenderEvent;
  *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
- * @copyright 2022 Marcin Szczyglinski
+ * @copyright 2023 Marcin Szczyglinski
  * @license   http://www.opensource.org/licenses/MIT The MIT License
  * @link https://github.com/szczyglis-dev/extended-dump-bundle
  */
@@ -118,8 +118,6 @@ class Generator
 
         // Get Symfony Profiler nonce
         $request = $event->getRequest();
-        $headers = $request->headers->all();
-
         $nonceJs = $request->headers->get('x-symfonyprofiler-script-nonce');
         $nonceCss = $request->headers->get('x-symfonyprofiler-style-nonce');
 
@@ -171,8 +169,13 @@ class Generator
                 'maxStringLength' => $options['max_string_depth'],
             ]);
 
-            $item->setDump(preg_replace('/<script>/', '<script nonce="'.$nonceJs.'">', $html)); // append CSP nonce
+            // append nonces
+            $html = preg_replace('/<script>/', '<script nonce="'.$nonceJs.'">', $html);
+            $html = preg_replace('/<style> /', '<style nonce="'.$nonceCss.'"> ', $html);
+            $html = preg_replace('/refStyle.innerHTML = /', 'refStyle.setAttribute("nonce", "'.$nonceCss.'"); refStyle.innerHTML = ', $html);
+            $html = str_replace('doc.createElement(\'style\');', 'doc.createElement(\'style\'); refStyle.setAttribute("nonce", "'.$nonceCss.'");', $html);
 
+            $item->setDump($html); // append with CSP nonces
             $items[$key][] = $item;
         }
 
