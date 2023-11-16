@@ -18,12 +18,12 @@ use \Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @package szczyglis/extended-dump-bundle
  * @author Marcin Szczyglinski <szczyglis@protonmail.com>
- * @copyright 2022 Marcin Szczyglinski
+ * @copyright 2023 Marcin Szczyglinski
  * @license   http://www.opensource.org/licenses/MIT The MIT License
  * @link https://github.com/szczyglis-dev/extended-dump-bundle
  */
 class ExtendedDumpBundle extends Bundle
 {
-    public const VERSION = '1.2.0';
-    public const VERSION_BUILD = '2023-11-05';
+    public const VERSION = '1.2.1';
+    public const VERSION_BUILD = '2023-11-16';
 }
