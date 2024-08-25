@@ -290,15 +290,10 @@ ___
 
 **- 1.2.1** - added style nonce append (2023-11-21)
 
-# Credits
- 
-### eXtended Dump is free to use but if you liked then you can donate project via BTC: 
+--- 
+**Extended Dump is free to use, but if you like it, you can support my work by buying me a coffee ;)**
 
-**14X6zSCbkU5wojcXZMgT9a4EnJNcieTrcr**
-
-or by PayPal:
- **[https://www.paypal.me/szczyglinski](https://www.paypal.me/szczyglinski)**
-
+https://www.buymeacoffee.com/szczyglis
 
 **Enjoy!**
 
