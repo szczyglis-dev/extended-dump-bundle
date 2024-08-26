@@ -1,6 +1,6 @@
 {
     "name": "szczyglis/extended-dump-bundle",
-    "description": "An extension that extends the debugging capabilities of Symfony 4, 5 and 6 frameworks.",
+    "description": "An extension that enhances the debugging capabilities of Symfony 4, 5, and 6 frameworks.",
     "homepage": "https://github.com/szczyglis-dev/extended-dump-bundle",
     "type": "symfony-bundle",
     "license": "MIT",
