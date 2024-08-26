@@ -12,7 +12,7 @@ Release: **1.2.2** | build: **2024.08.26** | PHP: **^7.2.5|^8.0**
 ```
 composer require szczyglis/extended-dump-bundle
 ```
-## Features:
+## Features
 
 - **New Configurable Window:** Groups dumped objects in an organized manner.
 - **New Global Function (`xdump`):** Facilitates quick debugging.
